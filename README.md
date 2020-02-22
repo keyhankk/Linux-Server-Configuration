@@ -167,6 +167,27 @@ if __name__ == '__main__':
   app.run(host='34.220.238.242', port=80)
 ```
 
+Run the following to make the wsgi file:
+
+```sh
+$ sudo nano /var/www/catalog/catalog.wsgi
+```
+
+The following lines are the file contents:
+
+```sh
+import sys
+import logging
+
+#Need activation if vitual env1 is used:
+activate_this = '/var/www/catalog/env1/bin/activate_this.py'
+#or use with(activate_this) as _file
+execfile(activate_this, dict(__file__=activate_this))
+
+sys.path.insert(0, "/var/www/catalog/")
+from application import app as application
+```
+
 # 7. Installing and configuring the Postresql
 
 ```sh
